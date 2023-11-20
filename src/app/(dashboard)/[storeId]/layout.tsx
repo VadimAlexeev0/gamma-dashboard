@@ -5,33 +5,33 @@ import { redirect } from "next/navigation";
 import Navbar from "@/components/navbar";
 
 export default async function DashboardLayout({
-  children,
-  params,
+	children,
+	params,
 }: {
-  children: React.ReactNode;
-  params: { storeId: string };
+	children: React.ReactNode;
+	params: { storeId: string };
 }) {
-  const { userId } = auth();
+	const { userId } = auth();
 
-  if (!userId) {
-    redirect("/sign-in");
-  }
+	if (!userId) {
+		redirect("/sign-in");
+	}
 
-  const store = await prismadb.store.findUnique({
-    where: {
-      id: params.storeId,
-      userId,
-    },
-  });
+	const store = await prismadb.store.findUnique({
+		where: {
+			id: params.storeId,
+			userId,
+		},
+	});
 
-  if (!store) {
-    redirect("/");
-  }
+	if (!store) {
+		redirect("/");
+	}
 
-  return (
-    <>
-      <Navbar />
-      {children}
-    </>
-  );
+	return (
+		<>
+			<Navbar />
+			{children}
+		</>
+	);
 }

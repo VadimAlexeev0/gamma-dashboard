@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import MainNav from "@/components/main-nav";
 import StoreSwitcher from "@/components/store-switcher";
 import prismadb from "@/lib/prisma";
+import { Separator } from "./ui/separator";
 
 const Navbar = async () => {
 	const { userId } = auth();
@@ -21,9 +22,11 @@ const Navbar = async () => {
 	return (
 		<div className="border-b">
 			<div className="flex h-16 items-center px-4">
-				<span className="mr-6 font-extrabold text-5xl italic tracking-tight">
+				<h1 className=" font-extrabold text-5xl italic tracking-tight">
 					Gamma
-				</span>
+					<span className="text-sm font-mono"> v.0</span>
+				</h1>
+				<Separator orientation="vertical" className="mx-6" />
 				<StoreSwitcher items={stores} />
 				<MainNav className="mx-6" />
 				<div className="ml-auto flex items-center space-x-4">
